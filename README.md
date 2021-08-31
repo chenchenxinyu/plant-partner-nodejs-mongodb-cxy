@@ -10,3 +10,11 @@ I was a rookie in the backend software, and in this process I get the help form 
 - ajax jq-ajax
 
 ## others
+
+## HOW TO RUN
+1. mongod --dbpath ./data/ --logpath ./log/mongod.log --fork  
+启动MongoDB服务器
+2. node backend.js
+运行js代码，开始响应前段数据请求
+
+
