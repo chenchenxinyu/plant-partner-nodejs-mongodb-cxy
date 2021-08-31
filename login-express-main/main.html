@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>主页</title>
+    <link rel="stylesheet" href="public/css/comm.css" />
+  </head>
+  <body>
+    <div id="nav">
+      <ul>
+        <li>
+          <a href="main.html">主页</a>
+        </li>
+        <li>
+          <a href="login.html">登录</a>
+        </li>
+        <li>
+          <a href="register.html">注册</a>
+        </li>
+      </ul>
+    </div>
+    <div class="wrapper">
+      <h1>欢迎使用Express-Login系统</h1>
+      <h1 id="info">请登陆！</h1>
+    </div>
+    <div align="center">
+      <img data-src="public/img/img-test/1.jpeg">
+      <img data-src="public/img/img-test/2.jpeg">
+      <img data-src="public/img/img-test/3.jpeg">
+      <img data-src="public/img/img-test/4.jpeg">
+      <img data-src="public/img/img-test/5.jpeg">
+      <img data-src="public/img/img-test/6.jpeg">
+      <img data-src="public/img/img-test/7.jpeg">
+      <img data-src="public/img/img-test/8.jpeg">
+      <img data-src="public/img/img-test/9.jpeg">
+      <img data-src="public/img/img-test/10.jpeg">
+    </div>
+    <script src="public/js/jquery.min.js"></script>
+    <script>
+      function getTop(e) {
+        var T = e.offsetTop;
+        e = e.offsetParent;
+        while(e) {
+          T += e.offsetTop;
+          e = e.offsetParent;
+        }
+        return T;
+      }
+
+      function lazyLoad(imgs) {
+          var H = document.documentElement.clientHeight;//获取可视区域高度
+          var S = document.documentElement.scrollTop || document.body.scrollTop;
+          for (var i = 0; i < imgs.length; i++) {
+              if (H + S > getTop(imgs[i])) {
+                if(! imgs[i].src){
+                  console.log("Iamge "+ (i + 1).toString() + " is loaded.")
+                  imgs[i].src = imgs[i].getAttribute('data-src');
+                }
+              }
+          }
+      }
+
+      var name =  getUrlParameter('name');
+      console.log(name);
+      if(name != ""){
+        document.getElementById("info").innerHTML = "当前登陆的账号为：" + name;
+      }
+
+      function getUrlParameter(name){
+        name = name.replace(/[]/,"\[").replace(/[]/,"\[").replace(/[]/,"\\\]");
+        var regexS = "[\\?&]"+name+"=([^&#]*)";
+        var regex = new RegExp( regexS );
+        var results = regex.exec(window.parent.location.href );
+        if( results == null ) return ""; 
+        else {
+            return results[1];
+        }
+      };
+
+      var imgs = document.querySelectorAll('img');
+
+      window.onload = window.onscroll = function () { //onscroll()在滚动条滚动的时候触发
+          lazyLoad(imgs);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>登录</title>
+    <link rel="stylesheet" href="public/css/comm.css" />
+  </head>
+  <body>
+    <div id="nav">
+      <ul>
+        <li>
+          <a href="main.html">主页</a>
+        </li>
+        <li>
+          <a href="login.html">登录</a>
+        </li>
+        <li>
+          <a href="register.html">注册</a>
+        </li>
+      </ul>
+    </div>
+    <div class="wrapper">
+      <h1>欢迎登录Express-Login系统</h1>
+      <div class="form-list">
+        <div class="form-item">
+          <span>用户名：</span>
+          <input type="text" name="username" id="name" />
+        </div>
+        <div class="form-item">
+          <span>密码：</span>
+          <input type="password" name="userpwd" id="pwd" />
+        </div>
+        <div class="form-item">
+          <canvas id="verifi-code" style='width:110px;height:40px'></canvas>
+          <input id="input-code" type="text" placeholder="请输入验证码">
+        </div>
+        <div class="btn">
+          <button onclick="submit()">登录</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="public/js/jquery.min.js"></script>
+  <script src="public/js/captcha.js"></script>
+  <script>
+    function submit() {
+      var name = $("#name").val().trim();
+      var pwd = $("#pwd").val().trim(); 
+      var input_code = $("#input-code").val().trim(); 
+      if(!isequal(code, input_code, "验证码错误")) return;
+
+      $.ajax({
+        url: "http://127.0.0.1:8008/process_login",
+        type: "post",
+        data: {
+          userName: name,
+          pwd: pwd
+        },
+        success: function(res) {
+          console.log(res);
+          if (res.code == 0) {
+            window.location.href = 'main.html?name=' + name;
+          } else {
+            alert(res.message);
+          }
+        },
+        error: function(){
+          console.info("网络出错");
+          alert("网络出错，请再试一次");
+       }
+    })
+  }
+
+  var canvas = document.getElementById('verifi-code');
+  var code = '';
+
+  window.onload = function () {
+      code = createCode();
+      draw_canvas(code);
+  }
+  canvas.onclick = function () {
+      code = createCode();
+      draw_canvas(code);
+  }
+  
+  </script>
+</html>
