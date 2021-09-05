@@ -1,0 +1,75 @@
+.mod {
+  width: 100vw;
+  height: 61.87vw;
+}
+
+.wrapper-inner {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  background-color: #90e673;
+  width: 100vw;
+}
+
+.vertical-line {
+  margin-right: 34.27vw;
+  width: 0.67vw;
+  height: 61.87vw;
+}
+
+.primary {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 4.67vw;
+}
+
+.entry-pic {
+  position: relative;
+  width: 29.07vw;
+  height: 21.47vw;
+}
+
+.logo {
+  position: relative;
+  margin-top: 1.2vw;
+  width: 19.07vw;
+  height: 5.33vw;
+}
+
+.icon-text-wrapper-i0 {
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 4.67vw;
+  background-color: #eb93b2;
+  width: 30.53vw;
+  height: 6.13vw;
+}
+
+.icon-text {
+  margin-top: -0.13vw;
+  width: 4.67vw;
+  height: 2vw;
+}
+
+.icon-text-wrapper-i1 {
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 3.07vw;
+  border-radius: 0.13vw;
+  background-color: #71cdeb;
+  width: 30.53vw;
+  height: 6.27vw;
+}
+
+.icon-text-1 {
+  margin-top: -0.13vw;
+  width: 4.53vw;
+  height: 2.13vw;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css" />
+    <script src="./index.js"></script>
+  </head>
+  <body>
+    <div class="mod">
+      <div class="wrapper-inner">
+        <img
+          class="vertical-line"
+          src="./images/img_91912_0_1.png"
+        />
+        <div class="primary">
+          <img
+            class="entry-pic"
+            src="./images/img_91912_0_0.png"
+          /><img
+            class="logo"
+            src="./images/img_91912_0_2.png"
+          />
+          <div class="icon-text-wrapper-i0">
+            <img class="icon-text"
+            src='./images/img_91912_0_3.png'
+            onInput=(e) => { } />
+          </div>
+          <div class="icon-text-wrapper-i1">
+            <img
+              class="icon-text-1"
+              src="./images/img_91912_0_4.png"
+            />
+          </div>
+          <div class="btn">
+            <button onclick="submit()">登陆</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/captcha.js"></script>
+  <script>
+    function submit() {
+      var name = $("#name").val().trim();
+      var pwd = $("#pwd").val().trim();
+      var input_code = $("#input-code").val().trim();
+      if(!isequal(code, input_code, "验证码错误")) return;
+
+      $.ajax({
+        url: "http://127.0.0.1:8008/process_login",
+        type: "post",
+        data: {
+          userName: name,
+          pwd: pwd
+        },
+        success: function(res) {
+          console.log(res);
+          if (res.code == 0) {
+            window.location.href = 'main.html?name=' + name;
+          } else {
+            alert(res.message);
+          }
+        },
+        error: function(){
+          console.info("网络出错");
+          alert("网络出错，请再试一次");
+       }
+    })
+  }
+
+  var canvas = document.getElementById('verifi-code');
+  var code = '';
+
+  window.onload = function () {
+      code = createCode();
+      draw_canvas(code);
+  }
+  canvas.onclick = function () {
+      code = createCode();
+      draw_canvas(code);
+  }
+
+  </script>
+</html>
