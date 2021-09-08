@@ -17,4 +17,4 @@ I was a rookie in the backend software, and in this process I get the help form 
 2. node backend.js
 运行js代码，开始响应前段数据请求
 
-
+目前该项目能够进一步前进，下一步我们计划配合HTML和Vue进行打包APP，今晚进行HTML发送ajax请求的测试，目前是在Ubuntu18.04系统下操作的。
